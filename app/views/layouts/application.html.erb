@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Portfolio</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  	<header>
+      <% if request.path.include?('admin') %>
+       <%= render 'layouts/adminHeader' %>
+      <% else %>
+        <%= render 'layouts/userHeader' %>
+      <% end %>
+    </header>
+    <div class="wrapper">
+      <main>
+        <%= yield %>
+      </main>
+      <div class="push"></div>
+    </div>
+    <footer>
+      Copyright © 2018 BIG APPLE Member...is always in your memory
+    </footer>
+  </body>
+</html>
+  </body>
+</html>

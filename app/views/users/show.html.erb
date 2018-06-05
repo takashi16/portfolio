@@ -1,0 +1,48 @@
+<div class="container">
+ <div class="row">
+    <div class="col-xs-8">
+<% @blogs.each do |blog| %>
+  <h2>  記事情報 </h2>
+  <tr>
+	<td><%= attachment_image_tag blog, :image, :fill, 100, 100, format: 'jpeg' %></td>
+    <td><%= blog.title %></td>
+    <td><%= blog.body %></td>
+  </tr>
+  <div class="row">
+  <% if user_signed_in? %>
+      	<% if blog.user.id == current_user.id %>
+      		<%= link_to "編集", edit_blog_path(blog.id), class: "btn btn-default active" %>
+      		<%= link_to "削除", blog_path, class: "btn btn-default active", method: :delete %>
+      	<% end %>
+  <% end %>
+</div>
+<% end %>
+</div>
+
+
+
+<div class="col-xs-4">
+  <h2>User Info</h2>
+    <table class="table">
+      <tbody>
+        <tr>
+          <td><%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg' %></td>
+        </tr>
+
+        <tr>
+        <td><%= @user.email %></td>
+        </tr>
+
+        <tr>
+          <td><%= @user.name %></td>
+        </tr>
+
+        <tr>
+          <td><%= @user.introduction %></td>
+        </tr>
+          <%= link_to 'ユーザー編集' , edit_user_path, class: "btn btn-default active" %>
+      </tbody>
+    </table>
+</div>
+</div>
+</div>

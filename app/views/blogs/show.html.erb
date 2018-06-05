@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="row">
+    <div class="col-xs-8">
+<%= attachment_image_tag @blog, :image, :fill, 100, 100, format: 'jpeg' %>
+	<h3><%= @blog.title %></h3>
+    <h4><%= @blog.body %></h4>
+    <div class="float-wrapper">
+        <h4 class="comment-count"><%= @blog.blog_comments.count %>件コメント</h4>
+
+            <script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+            <a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-text="%_subject_% - Big Apple Bloger" data-via="USERNAME" data-dnt="true">Tweet</a>
+
+            <a href="https://twitter.com/USERNAME" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false" data-size="large" data-dnt="true">Follow @USERNAME</a>
+    </div>
+
+    <div class="col-xs-6">
+        <table class="table">
+        <% @blog.blog_comments.each do |blog_comment| %>
+                            <tr>
+                            <td><%= blog_comment.user.name %>
+                            <%= blog_comment.created_at.strftime('%Y/%m/%d') %>
+                            <%= blog_comment.comment %>
+                        </td>
+                    </tr>
+
+        <% end %>
+        </table>
+    </div>
+</div>
+
+        <div class="col-xs-4">
+            <h2>User info</h2>
+                <div><%= attachment_image_tag @user, :image, size: '100x100' %></div>
+            <table class="table">
+                <tbody>
+                    <tr>
+                      <th>ニックネーム</th>
+                      <th><%= @blog.user.name %></th>
+                    </tr>
+                    <tr>
+                      <th>自己紹介</th>
+                      <th><%= @blog.user.introduction %></th>
+                    </tr>
+                        <% if user_signed_in? %>
+                            <% if @blog.user.id == current_user.id %>
+                                <%= link_to "記事編集", edit_blog_path(@blog.id) %>
+                                <%= link_to "記事削除", blog_path, method: :delete %>
+                            <% end %>
+                        <% end %>
+                </tbody>
+            </table>
+        </div>
+
+
+
+<div class="col-xs-8">
+<% if user_signed_in? %>
+    <%= form_for [@blog, @blog_comment] do |f| %>
+        <div class="row">
+            <div class="col-sm-12">
+                <%= f.text_field :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+            </div>
+        </div>
+        <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+    <% end %>
+<% end %>
+</div>

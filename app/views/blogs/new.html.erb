@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+		<table class="form_table">
+			<%= form_for(@blog) do |f| %>
+
+						<tr>
+							<td>画像</td>
+							<div class="image-new">
+							<td><%= f.attachment_field :image %></td>
+							</div>
+						</tr>
+
+      <div class="form-group">
+    <%= f.label :blog, :tag_list %>
+    <%= f.text_field :tag_list, value: @blog.tag_list.join(','), class: "form-control" %>
+  </div>
+
+						<tr>
+							<td>タイトル</td>
+							<td><%= f.text_area :title %></td>
+						</tr>
+
+						<tr>
+							<td>本文</td>
+							<td><%= f.text_area :body %></td>
+						</tr>
+
+						<tr>
+						<td><%= f.submit '投稿' %></td>
+						</tr>
+
+				</table>
+			<% end %>
+	</div>
+</div>
+
+

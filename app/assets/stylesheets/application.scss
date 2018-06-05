@@ -1,0 +1,158 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+// フッターの下部位置調整
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+a,a:hover,a:visited{
+  text-decoration: none;
+}
+// テキストボックス
+input[type="text"],input[type="email"],input[type="password"]
+{
+	border-radius: 5px;
+  margin: 5px 0;
+  -webkit-appearance: none;
+  border: 1px solid #ccc;
+  line-height: 2em;
+}
+// ボタン
+.btn{
+  margin: 5px 0;
+}
+.red-btn{
+  background-color: #e60303;
+  color:#fff;
+  width: 200px;
+}
+.red-border-btn{
+  background-color: #fff;
+  border:solid 1px #e60303;
+  color:red;
+  width: 200px;
+}
+.red-gray-btn{
+  background-color:#ccc;
+  border:none;
+  color:#e60303;
+  width: 200px;
+}
+.blue-btn{
+  background-color:#33a4ec;
+  color:#fff;
+  width: 200px;
+}
+.blue-gray-btn{
+  background-color: #ccc;
+  border:none;
+  color:#33a4ec;
+}
+// deviseエラー表示用
+// bootstrapのflushに寄せる
+#error_explanation{
+  width: 80%;
+  margin: 30px auto;
+  padding-top:10px;
+  padding-bottom:5px;
+  background-color: #ffd5cd;
+  border-radius: 5px;
+}
+// エラー見出し非表示
+#error_explanation > h2{
+  display: none;
+}
+// 改行されてしまう対応
+.field_with_errors{
+  display: inline-block;
+}
+// ヘッダー・フッター共通
+header,footer{
+  background-color: Black;
+  color:White;
+/*  margin: 0 20px;
+*/  padding:10px 0;
+    a,a:visited{
+      color:white;
+    }
+    a:hover{
+      color:lightgray;
+    }
+}
+.header_logo_text {
+  font-size:20px;
+  color: red;
+}
+.wrapper {
+  min-height: 100%;
+  margin-bottom: -50px;
+}
+.push {
+  height: 50px;
+}
+footer{
+  text-align: center;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+}
+// ロゴ
+.logo{
+  height: 60px;
+  width: 150px;
+  border-radius: 5px;
+  padding:15px 0;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 20px;
+}
+
+// メニュー
+.nav{
+	float: right;
+}
+.nav > ul {
+  margin-bottom:0px;
+}
+.nav > ul > li{
+ list-style: none;
+ display: inline;
+ padding:0 5px;
+}
+// サインアップ・ログインフォーム
+.form-div{
+  width: 80%;
+  margin: 30px auto;
+  padding:20px;
+  border: solid 1px #bababa;
+  text-align: center;
+  .postal-code-txt,.address-txt,
+  .tell-text,.email-txt,.password-txt{
+    width: 310px;
+  }
+  h4{
+    font-family: 'Comic Sans MS', cursive, 'arial unicode ms' !important;
+  }
+  textarea{
+    border-radius: 5px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+  }
+}

@@ -1,0 +1,61 @@
+// Place all the styles related to the blogs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+//
+商品一覧のタイル表示
+ul.blogs_list {
+ display: flex;
+ flex-wrap: wrap;
+ width: 90%;
+ margin: 50px auto;
+}
+ul.blogs_list > li {
+ width: 25%;
+ border: 1px solid white;
+ list-style: none;
+ flex-grow: 0;
+ box-sizing: border-box;
+}
+ul.blogs_list a{
+  list-style: none;
+  color:#000;
+}
+ul.blogs {
+  padding:5px;
+}
+ul.blogs > li{
+  list-style: none;
+}
+body{
+    background-color: #fff;
+    color: #333;
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    margin: 33px;
+}
+header .navbar-left span {
+    font-size: 20px;
+    padding-top: 10px;
+    color:  white;
+}
+.col-xs-9{
+    width: 75%;
+    float: left;
+}
+.col-xs-12 {
+    padding: 6px 12px;
+
+}
+.col-xs-3{
+    width: 25%;
+    float: right;
+}
+.field{
+    margin-bottom: 10px;
+}
+p {
+    margin: 0 0 10px;
+    font-size: 13px;
+    font-family: verdana, arial, helvetica, sans-serif;
+}

@@ -1,0 +1,32 @@
+<div class="container">
+	<div class="user_box">
+<h1 class="user_info"> User edit</h1>
+    </div>
+		  	<table class="form_table">
+		  		<%= form_for(@user) do |f| %>
+		  		<tr>
+				  <td><%= f.text_area :name %></td>
+				</tr>
+
+				<tr>
+				  <td><%= f.email_field :email %></td>
+				</tr>
+
+				<tr>
+				  <td><%= f.attachment_field :image %></td>
+				</tr>
+
+				<tr>
+				  <td><%= f.text_area :introduction %></td>
+				</tr>
+
+		  	</table>
+				  	<div class="btn_box1">
+				  	<%= f.submit "更新", class: " btn red-btn btn-xs" %>
+				    </div>
+			    <% end %>
+
+		            <div class="btn_box2">
+					   <%= link_to "戻る", user_path(@user.id), class: "btn red-gray-btn btn-xs" %>
+					</div>
+</div>

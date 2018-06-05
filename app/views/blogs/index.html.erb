@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+<h4>ようこそ！B.A.Bへ！ここはここはゲーム関連のブログページです！みんなで書いた記事をみんなでコメントし合いましょう</h4>
+</div>
+</div>
+<%= search_form_for(@q, url:blogs_path) do |f| %>
+<%= f.label :title_or_body_cont, "ブログタイトル or ブログ記事" %>
+  <%= f.search_field :title_or_body_cont %>
+  <%= f.submit %>
+<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-8">
+      <% @blogs.each do |blog| %>
+            <%= attachment_image_tag blog, :image, :fill, 150, 150, format: 'jpeg' %>
+              <p>タイトル</p>
+                  <h2><%=link_to blog.title, blog_path(blog.id) %></h2>
+                  <h2><%= blog.body %></h2>
+                  <% blog.tags.each do |tag| %>
+                    <p>
+                      <%= tag.name %>
+                    </p>
+                  <% end %>
+ <% end %>
+</div>
+
+<% if user_signed_in? %>
+ <div class="col-xs-4">
+ <h2>User info</h2>
+      <table class="table">
+            <tbody>
+              <tr>
+          <td><%= attachment_image_tag @user, :image, :fill, 50, 50, format: 'jpeg' %></td>
+        </tr>
+            <tr>
+              <th>name</th>
+              <th><%= current_user.name %></th>
+            </tr>
+            <tr>
+              <th>introduction</th>
+              <th><%= current_user.introduction %></th>
+            </tr>
+            <%=link_to "ブログの新規投稿", new_blog_path, class: "btn btn-default active" %>
+          </tbody>
+      </table>
+      <% end %>
+</div>
