@@ -10,4 +10,6 @@ class User < ApplicationRecord
   validates :name, presence: true, uniqueness: true,
   				   length:{ in: 2..20 }
   acts_as_taggable
+  is_impressionable
+
 end

@@ -1,6 +1,12 @@
 class Blog < ApplicationRecord
 	acts_as_taggable
 	acts_as_taggable_on :categories, :interests
+  is_impressionable
+
+
+
+
+
 
 	belongs_to :user
 	attachment :image

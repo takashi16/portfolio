@@ -1,48 +1,78 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-<h4>ようこそ！B.A.Bへ！ここはここはゲーム関連のブログページです！みんなで書いた記事をみんなでコメントし合いましょう</h4>
-</div>
-</div>
+      <h4>ようこそ！B.A.Bへ！ここはここはゲーム関連のブログページです！みんなで書いた記事をみんなでコメントし合いましょう</h4>
+    </div>
 <%= search_form_for(@q, url:blogs_path) do |f| %>
-<%= f.label :title_or_body_cont, "ブログタイトル or ブログ記事" %>
+  <%= f.label :title_or_body_cont, "ブログタイトル or ブログ記事" %>
   <%= f.search_field :title_or_body_cont %>
   <%= f.submit %>
 <% end %>
+
 <div class="container">
   <div class="row">
     <div class="col-xs-8">
       <% @blogs.each do |blog| %>
-            <%= attachment_image_tag blog, :image, :fill, 150, 150, format: 'jpeg' %>
-              <p>タイトル</p>
-                  <h2><%=link_to blog.title, blog_path(blog.id) %></h2>
-                  <h2><%= blog.body %></h2>
-                  <% blog.tags.each do |tag| %>
-                    <p>
-                      <%= tag.name %>
-                    </p>
-                  <% end %>
- <% end %>
+            <%= attachment_image_tag blog, :image, :fill, 500, 150, format: 'jpeg' %>
+              <% blog.tags.each do |tag| %>
+
+                      <h5>タグ名<%= tag.name %></h5>
+                    <% end %>
+                    <h4>タイトル</h4>
+                  <h3><%=link_to blog.title, blog_path(blog.id) %></h3>
+                  <h4><%= blog.body %></h4>
+                  <h5>閲覧数</h5>
+                  <h5><%= blog.counter %></h5>
+
+      <% end %>
+    </div>
+<div class="container">
+ <div class="row">
+ <div class="col-xs-4">
+  <h2>ランキング</h2>
+    <tr>
+<td><% @ranks.each_with_index do |blog, i| %>
+  第<%= i + 1 %>位:<%=link_to blog.title, blog_path(blog.id) %>
+  閲覧数:<%= blog.counter %>
+  </td>
+</tr>
+  <br>
+  <br>
+  
+<% end %>
 </div>
 
 <% if user_signed_in? %>
+<div class="container">
+ <div class="row">
  <div class="col-xs-4">
  <h2>User info</h2>
       <table class="table">
             <tbody>
-              <tr>
-          <td><%= attachment_image_tag @user, :image, :fill, 50, 50, format: 'jpeg' %></td>
-        </tr>
-            <tr>
-              <th>name</th>
-              <th><%= current_user.name %></th>
+              <td>name</td>
+              <td><%= current_user.name %></td>
             </tr>
             <tr>
-              <th>introduction</th>
-              <th><%= current_user.introduction %></th>
+              <td>introduction</td>
+              <td><%= current_user.introduction %></td>
             </tr>
             <%=link_to "ブログの新規投稿", new_blog_path, class: "btn btn-default active" %>
           </tbody>
       </table>
       <% end %>
-</div>
+
+<div class="col-xs-10">
+<% @blogs.each do |blog| %>
+<table class="table">
+  <tbody>
+    <tr>
+  <td>投稿月：<%= blog.created_at %></td>
+    </tr>
+ </tbody>
+</table>
+<% end %>
+
+
+
+
+

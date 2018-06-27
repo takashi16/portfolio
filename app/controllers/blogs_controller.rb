@@ -1,13 +1,22 @@
 class BlogsController < ApplicationController
+
   def index
     @blogs = Blog.all
     @q = Blog.search(params[:q])
     @blogs = @q.result(distinct: true)
+    @blogs = Blog.where("created_at not ?",nil)
+    #@blog = Blog.order("@blog.impressionable_count ASC")
+    @blogs =Blog.order("created_at DESC")
+    @ranks = Blog.order('counter DESC').limit(10)
+    #@most_viewed = @blog.order('impressionist_count ASC')
   end
 
   def show
     @blog = Blog.find(params[:id])
     @blog_comment = BlogComment.new
+    @page_views = @blog.impressionist_count
+    impressionist(@blog, nil, :unique => [:session_hash])
+    @blog.increment!(:counter)
   end
 
   def new
@@ -36,13 +45,12 @@ class BlogsController < ApplicationController
   end
 
   def destroy
-    blog = Blog.find(params[:id])
-    blog.destroy
+    @blog = Blog.find(params[:id])
+    @blog.destroy
     redirect_to blogs_path
-
   end
 
-
+impressionist actions: [:index, :show]
 
 
 

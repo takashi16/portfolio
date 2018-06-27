@@ -64,4 +64,5 @@ gem 'devise'
 gem 'bootstrap-sass'
 gem 'paranoia'
 gem 'acts-as-taggable-on'
+gem 'impressionist'
 
